@@ -350,21 +350,20 @@
         });
 
         // Search/filter
-        const searchInput = document.getElementById('search');
-        const cards = document.querySelectorAll('#links > a');
+    const searchInput = document.getElementById('search');
+    const cards = document.querySelectorAll('#links a');
 
-        searchInput.addEventListener('input', () => {
-            const query = searchInput.value.trim().toLowerCase();
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.trim().toLowerCase();
 
-            cards.forEach(card => {
-                // Collect text from title + description
-                const title = card.querySelector('h2')?.textContent.toLowerCase() || '';
-                const description = card.querySelector('p')?.textContent.toLowerCase() || '';
-                const match = title.includes(query) || description.includes(query);
+      cards.forEach(card => {
+    const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+    const description = card.querySelector('p')?.textContent.toLowerCase() || '';
+    const match = title.includes(query) || description.includes(query);
+    card.style.display = match ? '' : 'none';
+  });
+});
 
-                card.style.display = match ? '' : 'none';
-            });
-        });
 
         // Accessibility: focus on search when pressing "/" (like many dashboards)
         window.addEventListener('keydown', (e) => {
@@ -377,4 +376,5 @@
 </body>
 
 </html>
+
 
