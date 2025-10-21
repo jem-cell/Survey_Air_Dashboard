@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Work Dashboard</title>
+
+    <!-- Tailwind CDN (quick) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Basic favicon -->
+    <link rel="icon" href="data:,">
+
+    <!-- Initialize dark mode from localStorage before Tailwind renders -->
+    <script>
+        try {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'dark') document.documentElement.classList.add('dark');
+        } catch (e) {
+            /* ignore */
+        }
+    </script>
+
+    <style>
+        /* Helper card class using Tailwind's @apply is not available in CDN, so keep CSS small */
+        .card {
+            @apply;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-800 dark:text-gray-100 transition-colors">
+
+    <div class="max-w-6xl mx-auto px-6 py-10">
+
+        <!-- Header -->
+        <header class="flex flex-col items-center justify-center text-center gap-4 mb-8">
+            <!-- Company Banner -->
+            <img src="https://www.dropbox.com/scl/fi/0yc4maou71hftahhzl127/SA_Logo.jpg?rlkey=tj5riz3u3k2bqjqcgvxktxv4g&raw=1" alt="Company Banner" class="max-h-24 sm:max-h-32 object-contain mb-4 drop-shadow-md" />
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">
+                Dashboard
+            </h1>
+            <p class="text-gray-600 dark:text-gray-300">
+                Quick access to all my work tools and platforms
+            </p>
+        </header>
+
+        <!-- Search -->
+        <div class="mt-8 flex justify-center">
+            <input id="search" type="search" placeholder="Search tools (e.g., sheets, slack...)" class="w-full sm:w-2/3 lg:w-1/2 px-4 py-3 rounded-lg border dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm focus:outline-none" aria-label="Search tools" />
+        </div>
+
+        <!-- Grid of sections -->
+        <main id="links" class="mt-10 space-y-10">
+
+            <!-- Google Workspace -->
+            <section>
+                <h2 class="text-xl font-semibold mb-4">Google Workspace</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <!-- Gmail -->
+                    <a href="https://mail.google.com" target="_blank" rel="noreferrer" class="group block bg-white dark:bg-gray-800 rounded-xl p-5 shadow hover:shadow-lg transition">
+                        <div class="flex items-center gap-4">
+                            <!-- Badge -->
+                            <span class="flex-none" aria-hidden="true">
+                                <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="rounded-full">
+                                    <rect width="44" height="44" rx="10" fill="#D93025" />
+                                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="18" font-family="Arial, Helvetica, sans-serif">G</text>
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-medium">Gmail</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-300 mt-1">Email</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Google Calendar -->
+                    <a href="https://calendar.google.com" target="_blank" rel="noreferrer" class="group block bg-white dark:bg-gray-800 rounded-xl p-5 shadow hover:shadow-lg transition">
+                        <div class="flex items-center gap-4">
+                            <span class="flex-none" aria-hidden="true">
+                                <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="rounded-full">
+                                    <rect width="44" height="44" rx="10" fill="#1A73E8" />
+                                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="14" font-family="Arial, Helvetica, sans-serif">Cal</text>
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-medium">Google Calendar</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-300 mt-1">Meetings & scheduling</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Google Sheets -->
+                    <a href="https://docs.google.com/spreadsheets" target="_blank" rel="noreferrer" class="group block bg-white dark:bg-gray-800 rounded-xl p-5 shadow hover:shadow-lg transition">
+                        <div class="flex items-center gap-4">
+                            <span class="flex-none" aria-hidden="true">
+                                <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="rounded-full">
+                                    <rect width="44" height="44" rx="10" fill="#0F9D58" />
+                                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="14" font-family="Arial, Helvetica, sans-serif">S</text>
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-medium">Google Sheets</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-300 mt-1">Spreadsheets & data</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Google Docs -->
+                    <a href="https://docs.google.com" target="_blank" rel="noreferrer" class="group block bg-white dark:bg-gray-800 rounded-xl p-5 shadow hover:shadow-lg transition">
+                        <div class="flex items-center gap-4">
+                            <span class="flex-none" aria-hidden="true">
+                                <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="rounded-full">
+                                    <rect width="44" height="44" rx="10" fill="#1A73E8" />
+                                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="14" font-family="Arial, Helvetica, sans-serif">D</text>
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-medium">Google Docs</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-300 mt-1">Documents</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Automation -->
+            <section>
+                <h2 class="text-xl font-semibold mb-4">Automation</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <!-- OpenAI Dashboard -->
+                    <a href="https://platform.openai.com" target="_blank" rel="noreferrer" class="group block bg-white dark:bg-gray-800 rounded-xl p-5 shadow hover:shadow-lg transition">
+                        <div class="flex items-center gap-4">
+                            <span class="flex-none" aria-hidden="true">
+                                <!-- simple OpenAI-ish badge -->
+                                <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="44" height="44" rx="10" fill="#111827" />
+                                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="12" font-family="Arial">AI</text>
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-medium">OpenAI API Dashboard</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-300 mt-1">AI & model management</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Make.com -->
+                    <a href="https://www.make.com" target="_blank" rel="noreferrer" class="group block bg-white dark:bg-gray-800 rounded-xl p-5 shadow hover:shadow-lg transition">
+                        <div class="flex items-center gap-4">
+                            <span class="flex-none" aria-hidden="true">
+                                <!-- Make badge -->
+                                <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="44" height="44" rx="10" fill="#0B6E4F" />
+                                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="12" font-family="Arial">Mk</text>
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-medium">Make.com</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-300 mt-1">Workflow automation</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Analytics & Collaboration -->
+            <section>
+                <h2 class="text-xl font-semibold mb-4">Analytics & Collaboration</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <!-- Looker Studio -->
+                    <a href="https://lookerstudio.google.com" target="_blank" rel="noreferrer" class="group block bg-white dark:bg-gray-800 rounded-xl p-5 shadow hover:shadow-lg transition">
+                        <div class="flex items-center gap-4">
+                            <span class="flex-none" aria-hidden="true">
+                                <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="44" height="44" rx="10" fill="#0F9D58" />
+                                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="10" font-family="Arial">Look</text>
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-medium">Looker Studio</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-300 mt-1">Dashboards & reporting</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Lucidchart -->
+                    <a href="https://lucid.app" target="_blank" rel="noreferrer" class="group block bg-white dark:bg-gray-800 rounded-xl p-5 shadow hover:shadow-lg transition">
+                        <div class="flex items-center gap-4">
+                            <span class="flex-none" aria-hidden="true">
+                                <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="44" height="44" rx="10" fill="#2B6CB0" />
+                                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="12" font-family="Arial">Lc</text>
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-medium">Lucidchart</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-300 mt-1">Diagrams & flowcharts</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Dropbox -->
+                    <a href="https://www.dropbox.com" target="_blank" rel="noreferrer" class="group block bg-white dark:bg-gray-800 rounded-xl p-5 shadow hover:shadow-lg transition">
+                        <div class="flex items-center gap-4">
+                            <span class="flex-none" aria-hidden="true">
+                                <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="44" height="44" rx="10" fill="#0061FF" />
+                                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="12" font-family="Arial">DB</text>
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-medium">Dropbox</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-300 mt-1">File storage</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Slack -->
+                    <a href="https://slack.com" target="_blank" rel="noreferrer" class="group block bg-white dark:bg-gray-800 rounded-xl p-5 shadow hover:shadow-lg transition">
+                        <div class="flex items-center gap-4">
+                            <span class="flex-none" aria-hidden="true">
+                                <!-- Slack badge simplified -->
+                                <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="44" height="44" rx="10" fill="#4A154B" />
+                                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="12" font-family="Arial">S</text>
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-medium">Slack</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-300 mt-1">Team communication</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Social Media -->
+            <section>
+                <h2 class="text-xl font-semibold mb-4">Social Media</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com" target="_blank" rel="noreferrer" class="group block bg-white dark:bg-gray-800 rounded-xl p-5 shadow hover:shadow-lg transition">
+                        <div class="flex items-center gap-4">
+                            <span class="flex-none" aria-hidden="true">
+                                <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                                    <linearGradient id="ig" x1="0" x2="1">
+                                        <stop offset="0" stop-color="#feda75" />
+                                        <stop offset="0.5" stop-color="#d62976" />
+                                        <stop offset="1" stop-color="#962fbf" />
+                                    </linearGradient>
+                                    <rect width="44" height="44" rx="10" fill="url(#ig)" />
+                                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="12" font-family="Arial">IG</text>
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-medium">Instagram</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-300 mt-1">Content & engagement</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" class="group block bg-white dark:bg-gray-800 rounded-xl p-5 shadow hover:shadow-lg transition">
+                        <div class="flex items-center gap-4">
+                            <span class="flex-none" aria-hidden="true">
+                                <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="44" height="44" rx="10" fill="#0A66C2" />
+                                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="12" font-family="Arial">in</text>
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-medium">LinkedIn</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-300 mt-1">Networking</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- YouTube -->
+                    <a href="https://www.youtube.com" target="_blank" rel="noreferrer" class="group block bg-white dark:bg-gray-800 rounded-xl p-5 shadow hover:shadow-lg transition">
+                        <div class="flex items-center gap-4">
+                            <span class="flex-none" aria-hidden="true">
+                                <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="44" height="44" rx="10" fill="#FF0000" />
+                                    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="12" font-family="Arial">YT</text>
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-medium">YouTube</h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-300 mt-1">Video content</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
+            Made by Jem Karaceylan — <span class="italic">Business edition</span>
+        </footer>
+
+    </div>
+
+    <script>
+        // Theme toggle UI setup
+        const themeToggle = document.getElementById('themeToggle');
+        const themeLabel = document.getElementById('themeLabel');
+        const themeIcon = document.getElementById('themeIcon');
+
+        function setIconAndLabel() {
+            const isDark = document.documentElement.classList.contains('dark');
+            themeLabel.textContent = isDark ? 'Dark' : 'Light';
+            // simple Sun / Moon svg
+            if (isDark) {
+                themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />';
+            } else {
+                themeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v2m0 14v2m9-9h2M3 12H5m13.657-6.657l1.414 1.414M6.343 17.657l1.414 1.414M17.657 17.657l1.414-1.414M6.343 6.343L7.757 7.757" />';
+            }
+        }
+
+        setIconAndLabel();
+
+        themeToggle.addEventListener('click', () => {
+            const html = document.documentElement;
+            const isDark = html.classList.toggle('dark');
+            try {
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            } catch (e) {
+                /* ignore */
+            }
+            setIconAndLabel();
+        });
+
+        // Search/filter
+        const searchInput = document.getElementById('search');
+        searchInput.addEventListener('input', () => {
+            const q = searchInput.value.trim().toLowerCase();
+            const cards = document.querySelectorAll('main a.group');
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                card.style.display = text.includes(q) ? '' : 'none';
+            });
+        });
+
+        // Accessibility: focus on search when pressing "/" (like many dashboards)
+        window.addEventListener('keydown', (e) => {
+            if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+    </script>
+</body>
+
+</html>
