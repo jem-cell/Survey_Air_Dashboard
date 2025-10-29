@@ -30,13 +30,23 @@
     </style>
 
     <style>
-      h3 {
-        color: #111827; /* Tailwind gray-900 */
-          }
-          .dark h3 {
-        color: white;
-      }
+        h3 {
+            color: #111827;
+            /* Tailwind gray-900 */
+        }
+
+        .dark h3 {
+            color: white;
+        }
     </style>
+
+    <style>
+        /* Make all card titles white */
+        .group h3 {
+            color: white !important;
+        }
+    </style>
+
 
 </head>
 
@@ -142,7 +152,7 @@
                             </div>
                         </div>
                     </a>
-                    
+
                 </div>
             </section>
 
@@ -371,19 +381,19 @@
         });
 
         // Search/filter
-    const searchInput = document.getElementById('search');
-    const cards = document.querySelectorAll('#links a');
+        const searchInput = document.getElementById('search');
+        const cards = document.querySelectorAll('#links a');
 
-    searchInput.addEventListener('input', () => {
-      const query = searchInput.value.trim().toLowerCase();
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.trim().toLowerCase();
 
-      cards.forEach(card => {
-    const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
-    const description = card.querySelector('p')?.textContent.toLowerCase() || '';
-    const match = title.includes(query) || description.includes(query);
-    card.style.display = match ? '' : 'none';
-  });
-});
+            cards.forEach(card => {
+                const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+                const description = card.querySelector('p')?.textContent.toLowerCase() || '';
+                const match = title.includes(query) || description.includes(query);
+                card.style.display = match ? '' : 'none';
+            });
+        });
 
 
         // Accessibility: focus on search when pressing "/" (like many dashboards)
@@ -397,11 +407,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
