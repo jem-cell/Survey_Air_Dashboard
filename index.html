@@ -47,7 +47,25 @@
         }
     </style>
 
+    <style>
+        /* Add a subtle border to the favourites bar */
+        #favourites-bar {
+            border: 2px dashed #cbd5e1; /* Tailwind gray-300 */
+        }
+        .dark #favourites-bar {
+            border-color: #4b5563; /* Tailwind gray-600 */
+        }
+        /* Add a visual cue when dragging an item */
+        .sortable-ghost {
+            opacity: 0.4;
+        }
+        .sortable-drag {
+            cursor: grabbing;
+        }
+    </style>
 
+    <!-- SortableJS via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.2/Sortable.min.js"></script>
 </head>
 
 <body class="bg-gradient-to-br from-[#2E4B97]/10 via-gray-50 to-white dark:from-[#273967]/20 dark:via-gray-900 dark:to-black">
@@ -65,6 +83,14 @@
                 Quick access to all my work tools and platforms
             </p>
         </header>
+
+        <!-- Favourites Bar -->
+        <section id="favourites-section" class="hidden">
+            <h2 class="text-xl font-semibold mb-4">Favourites</h2>
+            <div id="favourites-bar" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6 bg-gray-100 dark:bg-gray-800 rounded-xl min-h-[120px]">
+                <!-- Favourite items will be dropped here -->
+            </div>
+        </section>
 
         <!-- Grid of sections -->
         <main id="links" class="mt-10 space-y-10">
@@ -398,9 +424,49 @@
 
         // Accessibility: focus on search when pressing "/" (like many dashboards)
         window.addEventListener('keydown', (e) => {
-            if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-                e.preventDefault();
-                searchInput.focus();
+            if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeE"
+}
+        });
+
+        // Drag and drop
+        document.addEventListener('DOMContentLoaded', () => {
+            const favouritesBar = document.getElementById('favourites-bar');
+            const favouritesSection = document.getElementById('favourites-section');
+            const linkContainers = document.querySelectorAll('#links .grid');
+
+            const sortableOptions = {
+                group: 'shared',
+                animation: 150,
+                onEnd: () => {
+                    const favouriteItems = favouritesBar.querySelectorAll('a');
+                    const favouriteIds = Array.from(favouriteItems).map(item => item.href);
+                    localStorage.setItem('favourites', JSON.stringify(favouriteIds));
+
+                    if (favouriteItems.length > 0) {
+                        favouritesSection.classList.remove('hidden');
+                    } else {
+                        favouritesSection.classList.add('hidden');
+                    }
+                }
+            };
+
+            new Sortable(favouritesBar, sortableOptions);
+
+            linkContainers.forEach(container => {
+                new Sortable(container, sortableOptions);
+            });
+
+            // Load favourites from local storage
+            const savedFavourites = JSON.parse(localStorage.getItem('favourites')) || [];
+            if (savedFavourites.length > 0) {
+                favouritesSection.classList.remove('hidden');
+                const allLinks = document.querySelectorAll('#links a');
+                savedFavourites.forEach(href => {
+                    const link = Array.from(allLinks).find(a => a.href === href);
+                    if (link) {
+                        favouritesBar.appendChild(link);
+                    }
+                });
             }
         });
     </script>
